@@ -19,8 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
+        android:onClick="goToDriverSignIn"
         android:background="@color/colorYellow"
-        android:onClick="goToPassengerSignIn"
         android:text="Driver"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:background="@color/colorYellow"
-        android:onClick="goToDriverSignIn"
+        android:onClick="goToPassengerSignIn"
         android:text="I m a passenger"
         app:layout_constraintTop_toBottomOf="@id/driverButton"
         />
