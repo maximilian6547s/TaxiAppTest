@@ -36,6 +36,11 @@ public class DriverSignInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_sign_in);
+        mAuth = FirebaseAuth.getInstance();
+        if (mAuth.getCurrentUser() != null) {
+            startActivity(new Intent(this,DriverMapsActivity.class));
+        }
+
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
         textInputEmail = findViewById(R.id.textInputEmail);
@@ -116,9 +121,9 @@ public class DriverSignInActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
+                                FirebaseUser user = mAuth.getCurrentUser();
                                 Log.d(TAG, "signInWithEmail:success");
                                 startActivity(new Intent(DriverSignInActivity.this, DriverMapsActivity.class));
-                                FirebaseUser user = mAuth.getCurrentUser();
                                 //updateUI(user);
                             } else {
                                 // If sign in fails, display a message to the user.
@@ -143,9 +148,9 @@ public class DriverSignInActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
+                                FirebaseUser user = mAuth.getCurrentUser();
                                 Log.d(TAG, "createUserWithEmail:success");
                                 startActivity(new Intent(DriverSignInActivity.this, DriverMapsActivity.class));
-                                FirebaseUser user = mAuth.getCurrentUser();
                                 //updateUI(user);
                             } else {
                                 // If sign in fails, display a message to the user.

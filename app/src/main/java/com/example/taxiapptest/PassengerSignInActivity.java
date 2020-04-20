@@ -3,6 +3,7 @@ package com.example.taxiapptest;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -35,6 +36,11 @@ public class PassengerSignInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passenger_sign_in);
+        mAuth = FirebaseAuth.getInstance();
+        if (mAuth.getCurrentUser() != null) {
+            startActivity(new Intent(this,PassengerMapsActivity.class));
+        }
+
         mAuth = FirebaseAuth.getInstance();
         textInputEmailPass = findViewById(R.id.textInputEmailPass);
         textInputNamePass = findViewById(R.id.textInputNamePass);
@@ -115,8 +121,9 @@ public class PassengerSignInActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
-                                Log.d(TAG, "signInWithEmail:success");
                                 FirebaseUser user = mAuth.getCurrentUser();
+                                Log.d(TAG, "signInWithEmail:success");
+                                startActivity(new Intent(PassengerSignInActivity.this, PassengerMapsActivity.class));
                                 //updateUI(user);
                             } else {
                                 // If sign in fails, display a message to the user.
@@ -141,8 +148,9 @@ public class PassengerSignInActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
-                                Log.d(TAG, "createUserWithEmail:success");
                                 FirebaseUser user = mAuth.getCurrentUser();
+                                Log.d(TAG, "createUserWithEmail:success");
+                                startActivity(new Intent(PassengerSignInActivity.this, PassengerMapsActivity.class));
                                 //updateUI(user);
                             } else {
                                 // If sign in fails, display a message to the user.
